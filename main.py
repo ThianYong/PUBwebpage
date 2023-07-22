@@ -14,13 +14,14 @@ except FileNotFoundError:
 # Set the title of the app
 st.title("PLC CPU Data Entry")
 
-# Input fields
-brand = st.text_input("Enter the brand of the PLC CPU:")
-model = st.text_input("Enter the model of the PLC CPU:")
-cpu_speed = st.number_input("Enter the CPU speed (MHz):", min_value=0, step=1)
-ram = st.number_input("Enter the RAM (MB):", min_value=0, step=1)
-ethernet_ports = st.number_input("Enter the number of Ethernet ports:", min_value=0, step=1)
-price = st.number_input("Enter the price (SGD):", min_value=0, step=1)
+# Input fields in the sidebar
+with st.sidebar:
+    brand = st.text_input("Enter the brand of the PLC CPU:")
+    model = st.text_input("Enter the model of the PLC CPU:")
+    cpu_speed = st.number_input("Enter the CPU speed (MHz):", min_value=0, step=1)
+    ram = st.number_input("Enter the RAM (MB):", min_value=0, step=1)
+    ethernet_ports = st.number_input("Enter the number of Ethernet ports:", min_value=0, step=1)
+    price = st.number_input("Enter the price (SGD):", min_value=0, step=1)
 
 # Add a divider between data entry and display
 st.markdown("---")

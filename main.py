@@ -15,7 +15,7 @@ except FileNotFoundError:
 st.title("PLC CPU Data Entry")
 
 # Create two columns layout
-data_entry_column, data_display_column = st.beta_columns(2)
+data_entry_column, data_display_column = st.columns(2)
 
 # Data Entry Section
 with data_entry_column:

@@ -62,6 +62,7 @@ selected_model = st.selectbox("Select Model:", data[data['Brand'] == selected_br
 # Filter data based on selected brand and model
 selected_data = data[(data['Brand'] == selected_brand) & (data['Model'] == selected_model)]
 
+
 # Plot the trend of price changes for the selected brand and model using native Streamlit line chart
 if not selected_data.empty:
     st.subheader("Price Trend:")

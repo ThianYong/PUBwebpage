@@ -69,3 +69,9 @@ if not selected_data.empty:
     st.line_chart(selected_data['Price (SGD)'])
 else:
     st.warning("No data available for the selected brand and model.")
+
+# Sidebar with buttons for other pages (placeholders)
+st.sidebar.title("Navigation")
+st.sidebar.button("PLC")
+st.sidebar.button("Analyser")
+st.sidebar.button("Instrument")

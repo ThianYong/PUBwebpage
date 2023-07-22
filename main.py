@@ -40,7 +40,8 @@ def save_data_to_csv(brand, model, cpu_speed, ram, ethernet_ports, price, data):
     }
 
     # Append the data entry to the existing data
-    data = data.append(data_entry, ignore_index=True)
+    new_data = pd.DataFrame(data_entry, index=[0])
+    data = pd.concat([data, new_data], ignore_index=True)
 
     # Save the updated data to CSV on GitHub
     data.to_csv(data_dir_url + 'plc_cpu_data.csv', index=False)
@@ -61,7 +62,6 @@ selected_model = st.selectbox("Select Model:", data[data['Brand'] == selected_br
 
 # Filter data based on selected brand and model
 selected_data = data[(data['Brand'] == selected_brand) & (data['Model'] == selected_model)]
-
 
 # Plot the trend of price changes for the selected brand and model using native Streamlit line chart
 if not selected_data.empty:

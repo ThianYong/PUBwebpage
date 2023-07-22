@@ -2,9 +2,13 @@ import streamlit as st
 import pandas as pd
 from datetime import datetime
 
+# Define the placeholder for the GitHub data directory URL
+data_dir_url = "https://raw.githubusercontent.com/ThianYong/PUBwebpage/446d43ad09ad5c32b24e53954375f4d2499121c8/data/"
+
+
 # Load existing data or create an empty DataFrame if no data exists
 try:
-    data = pd.read_csv('data/plc_cpu_data.csv')
+    data = pd.read_csv(data_dir_url + 'plc_cpu_data.csv')
 except FileNotFoundError:
     data = pd.DataFrame(columns=['Brand', 'Model', 'CPU Speed (MHz)', 'RAM (MB)', 'Ethernet Ports', 'Price (SGD)', 'Timestamp'])
 
@@ -22,7 +26,7 @@ price = st.number_input("Enter the price (SGD):", min_value=0, step=1)
 # Add a divider between data entry and display
 st.markdown("---")
 
-def save_data_to_csv(brand, model, cpu_speed, ram, ethernet_ports, price, data):
+def save_data_to_csv(brand, model, cpu_speed, ram, ethernet_ports, price):
     # Capture current date and time
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
@@ -39,12 +43,12 @@ def save_data_to_csv(brand, model, cpu_speed, ram, ethernet_ports, price, data):
     # Append the data entry to the existing data
     data = data.append(data_entry, ignore_index=True)
 
-    # Save the updated data to CSV
-    data.to_csv('data/plc_cpu_data.csv', index=False)
+    # Save the updated data to CSV on GitHub
+    data.to_csv(data_dir_url + 'plc_cpu_data.csv', index=False)
     return data
 
 if st.button("Save Data"):
-    data = save_data_to_csv(brand, model, cpu_speed, ram, ethernet_ports, price, data)
+    data = save_data_to_csv(brand, model, cpu_speed, ram, ethernet_ports, price)
     st.success("Data saved successfully!")
 
 # Display the entered data in a table
